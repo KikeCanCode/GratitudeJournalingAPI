@@ -11,20 +11,20 @@ import jakarta.persistence.Id;
 @Table(name = "gratitudeentry") // Tells Hibernate to make a table out of this class
 
 public class GratitudeEntry { //
-
-    @Id // schema = class in java
-    @GeneratedValue(strategy = GenerationType.UUID)
-
-    private UUID entryId; // : A unique identifier for the entry.
-    private String userName; // : The identifier for the user who created the entry.
-    private String content; // : The text content of the gratitude entry.
-    private Instant created; // : The timestamp when the entry was created.
-    private Instant updated; // : The timestamp when the entry was last updated.
-    private String location; // : The location of the events
-    private String topic; // : relationships, career, health, hobbies, achievements, others.
-
-    public GratitudeEntry(String userName, String content, Instant created, String location, String topics) { // Constructor                                                          // parameters/values.
-        this.userName = userName;
+GratitudeEntryX { //
+    
+        @Id // schema = class in java
+        @GeneratedValue(strategy = GenerationType.UUID)
+    
+        private UUID entryId; // : A unique identifier for the entry.
+        private String userName; // : The identifier for the user who created the entry.
+        private String content; // : The text content of the gratitude entry.
+        private Instant created; // : The timestamp when the entry was created.
+        private Instant updated; // : The timestamp when the entry was last updated.
+        private String location; // : The location of the events
+        private String topic; // : relationships, career, health, hobbies, achievements, others.
+    
+        public GratitudeEntryXame;
         this.content = content;
         this.created = created;
         this.location = location;
