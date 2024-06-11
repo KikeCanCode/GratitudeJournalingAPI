@@ -35,9 +35,16 @@ public class GratitudeEntryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    public ResponseEntity<GratitudeEntry>updatedGratitudeentry(@PathVariable UUID userId, @RequestBody Gratitudeentry updatedGratitudeEntry) {
+        try {
+            GratitudeEntry updatedgraGratitudeEntry = gratitudeService.updateGratitudeEntry(id, updatedGratitudeEntry);
+            return ResponseEntity.status(HttpStatus.OK).body(updatedgraGratitudeEntry);    
+        } catch (NoSuchElementException noSuchElementException) {// when an element cannot be found.
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
 
    
     }
 
 }
-//https://naveen-metta.medium.com/mastering-exception-handling-in-spring-boot-a-comprehensive-guide-fa3f916d1981#:~:text=In%20Spring%20Boot%2C%20you%20have,exceptions%2C%20managing%20specific%20HTTP%20status
+//https://naveen-metta.medium.com/mastering-exception-handling-in-spring-boot-a-comprehensive-guide-fa3f916d1981#:~:text=In%20Spring%20Boot%2C%20you%20have,exceptions%2C%20managing%20specific%20HTTP%20statusGr
