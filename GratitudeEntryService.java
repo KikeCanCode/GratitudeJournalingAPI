@@ -1,33 +1,45 @@
+package com.cbfacademy.apiassessment.GratitudeJournalingApi;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
+
+import org.springframework.dao.OptimisticLockingFailureException;
+import org.springframework.stereotype.Service;
 
 @Service
 public class GratitudeEntryService {
 
-public GratitudeEntryRepository gratitudeEntryRepository; 
+public GratitudeEntryRepository gratitudeEntryRepository;   // Instance of Repository class
 
-    public GratitudeEntryService(GratitudeEntryRepository gratitudeentryRepository) {
+    public GratitudeEntryService(GratitudeEntryRepository gratitudeEntryRepository) {
         this.gratitudeEntryRepository = gratitudeEntryRepository; 
     }
-    public GratitudeEntry createGratitudeEntry(GratitudeEntry newEntry) throws IllegalArgumentException, OptimisticLockingFailureException {
-        return gratitudeEntryRepository.save(gratitudeEntry);
+    public GratitudeEntry createGratitudeEntry(GratitudeEntry createdGratitudeEntry) throws IllegalArgumentException, OptimisticLockingFailureException {
+        return gratitudeEntryRepository.save(createdGratitudeEntry);    // createed GratitudeEntry
     }
 
-    public List<GratitudeEntryX> getAllGratitudeEntry(){
+    public List<GratitudeEntry> getAllGratitudeEntry(){     // retrive all entries
         return gratitudeEntryRepository.findAll();
     }
 
-    public getGratitudeEntry(UUID entryid) throws NoSuchElementException {
-        return gratitudeEntryRepository.findById(userId).orElseThrow();
+    public GratitudeEntry getGratitudeEntry(UUID entryId) throws NoSuchElementException {
+        return gratitudeEntryRepository.findById(entryId).orElseThrow();
+    }
+        // To update an entry
+    public GratitudeEntry updateGratitudeEntry(UUID entryId, GratitudeEntry updatedgraGratitudeEntry) throws NoSuchElementException{
+        GratitudeEntry gratitudeEntry = gratitudeEntryRepository.findById(entryId).orElseThrow();
+        gratitudeEntry.setContent(updatedgraGratitudeEntry.getContent());
+        gratitudeEntry.setUserName(updatedgraGratitudeEntry.getUserName());
+        gratitudeEntry.setUpdated(updatedgraGratitudeEntry.getUpdated());
+        gratitudeEntry.setTopic(updatedgraGratitudeEntry.getTopic());
+        gratitudeEntry.setLocation(updatedgraGratitudeEntry.getLocation());
+        
+        return gratitudeEntry;
     }
 
-    public GratitudeEntry updateGratitudeEntry(UUID id, GratitudeEntry updatedgraGratitudeEntry) throws NoSuchElementException{
-        GratitudeEntry gratitudeEntry = gratitudeEntryRepository.findById(id).orElseThrow();
-        gratitudeEntry.setContent(updatedgraGratitudeEntry.getContent());
+    public void deleteGratitudeEntry(UUID entryId) { // To delete an entry by id
+        gratitudeEntryRepository.deleteById(entryId);
     }
 
 
 }
-   
-
-
